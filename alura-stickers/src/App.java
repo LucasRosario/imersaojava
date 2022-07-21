@@ -9,8 +9,12 @@ public class App {
         // fazer uma conexão HTTP e buscar os top 250 filmes
         // String url = "https://imdb-api.com/en/API/Top250Movies/k_qp3qnxqp";
 
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/TopMovies.json";
+        String url = "http://localhost:8080/linguagens";
         ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
+
+        // String url =
+        // "https://raw.githubusercontent.com/alura-cursos/imersao-java/api/TopMovies.json";
+        // ExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
 
         // String url =
         // "https://api.nasa.gov/planetary/apod?api_key=0Ut16XcLFjXw3vgXMEx4cwH4IWr1wLVtSvi2O8PU&start_date=2022-06-12&end_date=2022-06-14";
@@ -24,11 +28,11 @@ public class App {
         List<Conteudo> conteudos = extrator.extraiConteudos(json);
 
         var geradora = new GeradoraDeFigurinhas();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             Conteudo conteudo = conteudos.get(i);
 
             InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
-            String nomeArquivo = "../saida/" + conteudo.getTitulo() + ".png";
+            String nomeArquivo = "saida/" + conteudo.getTitulo() + ".png";
 
             geradora.cria(inputStream, nomeArquivo);
 
